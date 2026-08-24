@@ -1,6 +1,6 @@
 # UFDR: Uncertainty-Guided Feature Distribution Refinement for Unsupervised Medical Image Anomaly Detection
 
-这是从原 MedIAnomaly UFDR 实现按原代码框架和逻辑整理出的最小可运行包，不是重新设计。它保留 UFDR 的核心模型、训练、测试与通用文件夹数据接口，便于手动上传到 GitHub、阅读和复现实验入口。
+
 
 三个核心机制的当前名称是：
 
@@ -8,11 +8,7 @@
 - TGDR = Trajectory-Guided Decoder Regulation
 - RCA = Re-parameterized calibration attention
 
-## 保留范围
 
-本包保留：shared DINOv3 ConvNeXt-Tiny encoder、orig/rot180 双视图、two independent decoders、4 个 RCA、feature reconstruction、PUCL、仅作用于 decoder1 的 TGDR、图像级异常分数，以及最小训练/测试流程。
-
-为保持边界清楚，本包排除了 Mamba、Flow、Memory、IQA、WNet 等可选分支，也不包含数据集、DINOv3 权重、训练 checkpoint、日志、实验结果或论文资产。代码不会下载这些外部资源。
 
 ## 目录
 
@@ -41,7 +37,6 @@ python -m pip install -r requirements.txt
 lightly_train._models.dinov3.dinov3_src.hub.backbones
 ```
 
-该 provider 没有打包进本仓库。因为此适配器依赖其内部模块路径，而本包没有验证一个可安全固定的兼容版本，所以 `requirements.txt` 不会未经核实地 pin `lightly-train`。请按照 provider 上游说明安装能暴露 `dinov3_convnext_tiny` 的兼容版本，然后检查接口：
 
 ```bash
 python -c "from lightly_train._models.dinov3.dinov3_src.hub.backbones import dinov3_convnext_tiny; print('provider OK')"
@@ -53,7 +48,7 @@ python -c "from lightly_train._models.dinov3.dinov3_src.hub.backbones import din
 weights/dinov3_convnext_tiny_lvd1689m.pth
 ```
 
-本仓库不附带、也不自动下载该权重。使用 provider 和权重前，请分别确认并遵守其上游许可与使用条款。
+
 
 ## 数据布局
 
@@ -144,7 +139,7 @@ python scripts/test.py --help
 python -m pytest -q
 ```
 
-测试通过轻量注入模型和假的 provider 检查组件、数据、checkpoint 与 CLI 契约；这只验证代码路径，不代表研究性能。真实 UFDR 使用双 DINO 前向和两个 ResNet-50 风格 decoder，建议准备兼容权重后在 CUDA GPU 上运行，并依据显存调小 `data.batch_size`。如明确选择 CPU，请把 `device` 改为 `cpu`，但完整训练会很慢。
+测试通过轻量注入模型和假的 provider 检查组件、数据、checkpoint 与 CLI 契约；这只验证代码路径，不代表研究性能。真实 UFDR 使用双 DINO 前向和两个 ResNet-50 风格 decoder，建议在准备兼容权重后在 CUDA GPU 上运行，并依据显存调小 `data.batch_size`。如明确选择 CPU，请把 `device` 改为 `cpu`，但完整训练会很慢。
 
 ## 发布与许可提示
 
