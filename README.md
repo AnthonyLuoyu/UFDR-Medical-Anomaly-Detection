@@ -2,7 +2,6 @@
 
 
 
-三个核心机制的当前名称是：
 
 - PUCL = Pairwise Uncertainty-guided Curriculum Learning
 - TGDR = Trajectory-Guided Decoder Regulation
