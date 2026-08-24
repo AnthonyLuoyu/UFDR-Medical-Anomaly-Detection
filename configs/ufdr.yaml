@@ -1,0 +1,33 @@
+seed: 0
+device: cuda
+data:
+  root: data/example
+  image_size: 256
+  channels: 3
+  batch_size: 64
+  workers: 4
+model:
+  encoder: dinov3_convnext_tiny
+  weights: weights/dinov3_convnext_tiny_lvd1689m.pth
+  aux_view: rot180
+  freeze_encoder_epochs: 100
+  cosine_weight: 0.5
+  mse_weight: 0.05
+pucl:
+  temperature: 0.1
+  weight: 0.01
+  label_mode: class
+  group_size: 8
+  eps: 1.0e-12
+tgdr:
+  window_size: 20
+  base_l2_lambda: 3.0e-4
+  max_lambda: 0.03
+  target: decoder1
+  reliability: corr_gap
+train:
+  epochs: 600
+  lr_encoder: 5.0e-6
+  lr_projection: 1.0e-4
+  lr_decoder: 1.0e-3
+  output_dir: outputs/ufdr
