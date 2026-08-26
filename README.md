@@ -17,6 +17,8 @@ UFDR/
 ├── requirements.txt
 └── THIRD_PARTY_NOTICES.md
 
+```text
+
 ---
 
 ## Core Components
