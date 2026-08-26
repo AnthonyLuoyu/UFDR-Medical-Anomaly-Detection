@@ -4,6 +4,17 @@ Official implementation of **UFDR** for unsupervised medical image anomaly detec
 
 UFDR is a normal-only learning framework that refines normal-feature distributions through uncertainty-guided feature modeling and improves anomaly-sensitive reconstruction through adaptive decoder regulation.
 
+## Core Components
+
+- **PUCL**: Pairwise Uncertainty-guided Curriculum Learning  
+  Refines normal-feature distributions by modeling uncertainty in pairwise relations and progressively organizing normal features into compact local modes.
+
+- **TGDR**: Trajectory-Guided Decoder Regulation  
+  Dynamically adjusts decoder regularization according to training-validation trajectory inconsistency to prevent abnormal-feature over-reconstruction.
+
+- **RCA**: Re-parameterized Calibration Attention  
+  Enhances skip features by introducing non-local structural context during feature reconstruction.
+
 ## Repository Structure
 
 ```text
@@ -17,20 +28,9 @@ UFDR/
 ├── requirements.txt
 └── THIRD_PARTY_NOTICES.md
 
-```text
-
 ---
 
-## Core Components
 
-- **PUCL**: Pairwise Uncertainty-guided Curriculum Learning  
-  Refines normal-feature distributions by modeling uncertainty in pairwise relations and progressively organizing normal features into compact local modes.
-
-- **TGDR**: Trajectory-Guided Decoder Regulation  
-  Dynamically adjusts decoder regularization according to training-validation trajectory inconsistency to prevent abnormal-feature over-reconstruction.
-
-- **RCA**: Re-parameterized Calibration Attention  
-  Enhances skip features by introducing non-local structural context during feature reconstruction.
 
 
 
